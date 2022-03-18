@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# ********** Basics needed ************
+apt-get -q update
+apt-get --assume-yes install apt-transport-https
+apt-get --assume-yes install ca-certificates 
+apt-get --assume-yes install curl 
+apt-get --assume-yes install software-properties-common
+apt-get --assume-yes install gnupg-agent 
+apt-get --assume-yes install python-minimal 
+apt-get --assume-yes install jq
+apt-get --assume-yes install make
+apt-get --assume-yes install git-core
+apt-get --assume-yes install nano
+apt-get --assume-yes install build-essential
+apt-get --assume-yes install einstall numactl
+
+# ************ Buildah apt-get *********
+apt-get -q update
+apt-get --assume-yes install buildah 
+
+# *********** Kubernetes ***************
+apt-get update
+apt-get --assume-yes install apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list 
+apt-get update
+apt-get --assume-yes install kubectl
+
+# *********** Docker community addition ***
+# Install docker community addition
+echo "127.0.0.1 localhost" > /etc/hosts
+sysctl -w vm.max_map_count=262144
+swapoff -a
+sed -i '/ swap / s/^/#/' /etc/fstab
+echo "vm.max_map_count=262144" >> /etc/sysctl.conf
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get -q update
+apt-get --assume-yes install docker-ce docker-ce-cli containerd.io
+start docker.service
+docker version
+
+# *********** IBM Cloud CLI *********** 
+curl -fsSL https://clis.cloud.ibm.com/install/linux | sh 
+ibmcloud plugin install container-service 
+ibmcloud plugin install container-registry 
+ibmcloud plugin install code-engine 
+ibmcloud plugin install cloud-databases
+
+# *********** Brew user ***********
+mkdir brewuser
+cd ..
+groupadd brewusers 
+useradd -G brewusers brewuser 
+usermod -a -G  brewusers root 
+usermod -a -G  root brewuser
+chown -R brewuser:brewusers home
+chown -R brewuser:brewusers home/brewuser
+chmod g+rwX home
+chmod g+rwX home/brewuser
+cd home
+echo "brewuser:password"|chpasswd
+su - brewuser
+whoami
+pwd
+cd ..
