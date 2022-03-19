@@ -16,8 +16,12 @@ apt-get --assume-yes install build-essential
 apt-get --assume-yes install einstall numactl
 
 # ************ Buildah apt-get *********
-apt-get -q update
-apt-get --assume-yes install buildah 
+. /etc/os-release
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
+wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_${VERSION_ID}/Release.key -O Release.key
+sudo apt-key add - < Release.key
+sudo apt-get update -qq
+sudo apt-get -qq --assume-yes install buildah
 
 # *********** Kubernetes ***************
 apt-get update
