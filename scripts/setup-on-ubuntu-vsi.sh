@@ -44,6 +44,7 @@ apt-get -q update
 apt-get --assume-yes install docker-ce docker-ce-cli containerd.io
 start docker.service
 docker version
+chmod 666 /var/run/docker.sock
 
 # *********** IBM Cloud CLI *********** 
 curl -fsSL https://clis.cloud.ibm.com/install/linux | sh 
