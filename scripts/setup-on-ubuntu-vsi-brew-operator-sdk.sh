@@ -11,6 +11,9 @@ brew doctor
 
 # *********** Install operator sdk ***********
 brew install operator-sdk
+# *********** Install kube-ps1 ***********
+brew update
+$ brew install kube-ps1
 # *********** Fix brew linux problem *********
 go env -w CC=gcc CXX="g++"
 
