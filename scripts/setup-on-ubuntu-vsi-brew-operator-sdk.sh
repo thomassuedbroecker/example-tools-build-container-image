@@ -13,7 +13,11 @@ brew doctor
 brew install operator-sdk
 # *********** Install kube-ps1 ***********
 brew update
-$ brew install kube-ps1
+brew install kube-ps1
+#sudo source "/home/linuxbrew/.linuxbrew/opt/kube-ps1/share/kube-ps1.sh" >> ~/.bash_profile
+#echo 'PS1='$(kube_ps1)'$PS1' >> ~/.bash_profile
+#source "/home/linuxbrew/.linuxbrew/opt/kube-ps1/share/kube-ps1.sh" >> ~/.profile 
+#echo 'PS1='$(kube_ps1)'$PS1' >> ~/.profile 
 # *********** Fix brew linux problem *********
 go env -w CC=gcc CXX="g++"
 
