@@ -64,6 +64,7 @@ chown -R brewuser:brewusers home
 chown -R brewuser:brewusers home/brewuser
 chmod g+rwX home
 chmod g+rwX home/brewuser
+chsh -s /bin/bash brewuser
 cd home
 echo "brewuser:password"|chpasswd
 su - brewuser

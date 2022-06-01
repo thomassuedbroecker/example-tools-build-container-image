@@ -8,7 +8,11 @@ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
 echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
 brew -v
 brew doctor
-
+# *********** Install podman ***********
+brew install podman
+podman machine init
+podman machine start
+podman info
 # *********** Install operator sdk ***********
 brew install operator-sdk
 # *********** Install kube-ps1 ***********
