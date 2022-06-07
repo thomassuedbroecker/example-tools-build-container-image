@@ -2,6 +2,7 @@
 
 # ********** Basics needed ************
 apt-get -q update
+apt-get -y upgrade
 apt-get --assume-yes install apt-transport-https
 apt-get --assume-yes install ca-certificates 
 apt-get --assume-yes install curl 
@@ -14,6 +15,8 @@ apt-get --assume-yes install git-core
 apt-get --assume-yes install nano
 apt-get --assume-yes install build-essential
 apt-get --assume-yes install einstall numactl
+apt-get --assume-yes install qemu-system-x86-64
+apt-get --assume-yes install podman
 
 # ************ Buildah apt-get *********
 . /etc/os-release
